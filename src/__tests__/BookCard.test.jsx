@@ -1,11 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import BookCard from '../components/BookCard';
+import '@testing-library/jest-dom';
 
 describe('BookCard', () => {
-    it('renders the book year and status', () => {
-    const book = { title: 'Sample', author: 'Author', year: '2023', status: 'pending' };
-    render(<BookCard book={book} />);
-    expect(screen.getByText(/Author\s*\(\s*2023\s*\)/)).toBeTruthy();
-    expect(screen.getByText(/Estat:\s*pending/)).toBeTruthy();
-});
+    const book = {
+        id: 1,
+        title: 'Test Book',
+        author: 'Test Author',
+        year: 2023,
+        status: 'read'
+    };
+
+    it('renders book title, author, year, and status', () => {
+        render(<BookCard book={book} refreshBooks={vi.fn()} />);
+        expect(screen.getByText('Test Book')).toBeInTheDocument();
+        expect(screen.getByText('Test Author')).toBeInTheDocument();
+        expect(screen.getByText('2023')).toBeInTheDocument();
+        expect(screen.getByText('read')).toBeInTheDocument();
+    });
 });
