@@ -19,7 +19,7 @@ function App() {
 
     return (
         <div className="app">
-        <h1>Llibres llegits</h1>
+        <h2>My Book Collection</h2>
         <BookForm refreshBooks={fetchBooks} />
         <BookList books={books} refreshBooks={fetchBooks} />
         </div>
